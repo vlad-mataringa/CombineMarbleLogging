@@ -23,7 +23,7 @@ extension Publisher {
                 return .init(index: index, publisher: self, publisherType: publisher.publisherType, left: left)
             }
         } else {
-            return .init(index: index, publisher: self, publisherType: .raw)
+            return .init(index: index, publisher: self, publisherType: .atom)
         }
     }
     

@@ -30,7 +30,8 @@ class SubscriptionManager {
     }
      
     private func subscribe(uuid: UUID, publisher: some Publisher, type: PublisherType, index: Int) {
-        let anyCancelable: AnyCancellable = publisher.sink(receiveCompletion: { _ in }, receiveValue: { event in
+        let anyCancelable: AnyCancellable = publisher.sink(receiveCompletion: { _ in }, // TODO: fix this
+                                                           receiveValue: { event in
             let value: String? = (try? (event as? Encodable)?.json()) ?? String(describing: event)
             let content: ValueLog = ValueLog(index: index, value: value)
             LoggingManager.shared.log(LogEvent(id: uuid, date: Date(), type: .event, content: content))
